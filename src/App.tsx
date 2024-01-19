@@ -1,15 +1,12 @@
 import Header from "./components/layout/Header.tsx";
 import SearchInput from "./components/search/SearchInput.tsx";
 import SearchResult from './components/search/SearchResult.tsx';
-import type { SearchResult, Definition } from "./types.ts";
+import type { SearchResult as SearchResultType } from "./types.ts";
 
-const dummyDefinitions: DefinitionType[] = [
-  // { word: 'Development',
-  //   partOfSpeech: 'Verb',
-  //   ipa?: 'di-ˈve-ləp-mənt',
-  //   audio?: 'https://audios.com',
-  //   meanings: ['']}
-];
+const dummyResults: SearchResultType = {
+  word: 'development',
+  definitions: []
+}
 
 function App() {
   
@@ -17,11 +14,11 @@ function App() {
     <>
       <Header />
       <main>
-        <div className="flex justify-center px-10 mt-10 md:mt-24">
-          <SearchInput onSearch={(e) => alert(e)}/>
+        <div className="mt-10 flex justify-center px-10 md:mt-24">
+          <SearchInput onSearch={(e) => alert(e)} />
         </div>
 
-        <SearchResult definitions={dummyDefinitions} />
+        <SearchResult searchResult={dummyResults} />
       </main>
     </>
   );
