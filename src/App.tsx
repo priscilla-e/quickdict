@@ -1,9 +1,15 @@
 import Header from "./components/layout/Header.tsx";
 import SearchInput from "./components/search/SearchInput.tsx";
-import Definition from './components/definition/Definition.tsx';
-import type { Definition as DefinitionType } from "./types.ts";
+import SearchResult from './components/search/SearchResult.tsx';
+import type { SearchResult, Definition } from "./types.ts";
 
-const dummyDefinitions: DefinitionType[] = [];
+const dummyDefinitions: DefinitionType[] = [
+  // { word: 'Development',
+  //   partOfSpeech: 'Verb',
+  //   ipa?: 'di-ˈve-ləp-mənt',
+  //   audio?: 'https://audios.com',
+  //   meanings: ['']}
+];
 
 function App() {
   
@@ -15,7 +21,7 @@ function App() {
           <SearchInput onSearch={(e) => alert(e)}/>
         </div>
 
-        <Definition definitions={dummyDefinitions} />
+        <SearchResult definitions={dummyDefinitions} />
       </main>
     </>
   );

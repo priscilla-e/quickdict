@@ -7,7 +7,7 @@ interface DefinitionItemProps {
 export default function DefinitionItem({ definition }: DefinitionItemProps) {
   return (
     <li>
-      <p> {definition.partOfSpeech}</p>
+      <p>Verb</p>
       <div></div>
     </li>
   );

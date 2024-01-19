@@ -1,13 +1,12 @@
-import DefinitionList from './DefinitionList.tsx'
+import DefinitionList from '../definition/DefinitionList.tsx'
+import type { SearchResult } from '../../types.ts';
 import { HiSpeakerWave } from 'react-icons/hi2';
-import type { Definition } from '../../types.ts';
 
-
-interface DefinitionProps {
-  definitions: Definition[];
+interface SearchResultProps {
+  searchResult: SearchResult;
 }
 
-export default function Definition({ definitions }: DefinitionProps) {
+export default function SearchResult({searchResult}: SearchResultProps ) {
   return (
     <div className="mx-auto mt-10 min-h-96 max-w-2xl rounded-3xl bg-white px-6 py-8 md:p-10">
       <div className="flex items-center justify-between rounded-2xl bg-primary p-6 text-white md:py-10">
@@ -22,7 +21,7 @@ export default function Definition({ definitions }: DefinitionProps) {
         </button>
       </div>
 
-      <DefinitionList definitions={definitions} />
+      <DefinitionList definitions={searchResult.definitions} />
     </div>
   );
 }
