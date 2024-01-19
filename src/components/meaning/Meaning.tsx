@@ -1,6 +1,6 @@
 import { HiSpeakerWave } from 'react-icons/hi2';
 
-export default function SearchOutput() {
+export default function Meaning() {
   return (
     <div className="mx-auto mt-10 min-h-96 max-w-2xl rounded-3xl bg-white px-6 py-8 md:p-10">
       <div className="flex items-center justify-between rounded-2xl bg-primary p-6 text-white md:py-10">
