@@ -1,15 +1,25 @@
-import Header from "./components/layout/Header.tsx";
-import SearchInput from "./components/search/SearchInput.tsx";
+import Header from './components/layout/Header.tsx';
+import SearchInput from './components/search/SearchInput.tsx';
 import SearchResult from './components/search/SearchResult.tsx';
-import type { SearchResult as SearchResultType } from "./types.ts";
+import type { SearchResult as SearchResultType } from './types.ts';
 
 const dummyResults: SearchResultType = {
   word: 'development',
-  definitions: []
-}
+  definitions: [
+    {
+      partOfSpeech: 'Verb',
+      ipa: 'di-ˈve-ləp-mənt',
+      audio: 'https://audios.com',
+      meanings: [
+        'to set down in writing or the like, as for the purpose of preserving evidence.',
+        'to set down in writing or the like, as for the purpose of preserving evidence.',
+        'to set down in writing or the like, as for the purpose of preserving evidence.',
+      ],
+    },
+  ],
+};
 
 function App() {
-  
   return (
     <>
       <Header />
