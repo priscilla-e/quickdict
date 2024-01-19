@@ -1,6 +1,6 @@
 import Header from "./components/layout/Header.tsx";
 import SearchInput from "./components/search/SearchInput.tsx";
-import SearchOutput from "./components/search/SearchOutput.tsx"
+import Definition from './components/definition/Definition.tsx';
 
 function App() {
   return (
@@ -10,7 +10,8 @@ function App() {
         <div className="flex justify-center px-10 mt-10 md:mt-24">
           <SearchInput onSearch={(e) => alert(e)}/>
         </div>
-        <SearchOutput />
+        
+        <Definition />
       </main>
     </>
   );
