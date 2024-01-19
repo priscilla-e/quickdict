@@ -1,5 +1,5 @@
-import { Definition } from '../../types';
 import DefinitionItem from './DefinitionItem';
+import type { Definition } from '../../types';
 
 interface DefinitionListProps {
   definitions: Definition[];
@@ -7,7 +7,7 @@ interface DefinitionListProps {
 
 export default function DefinitionList({ definitions }: DefinitionListProps) {
   return (
-    <ul className="mt-4 bg-red-200">
+    <ul className="border-b border-b-gray-200 py-6">
       {definitions.map((definition, index) => (
         <DefinitionItem key={index} definition={definition} />
       ))}

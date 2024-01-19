@@ -12,7 +12,7 @@ export default function SearchResult({searchResult}: SearchResultProps ) {
       <div className="flex items-center justify-between rounded-2xl bg-primary p-6 text-white md:py-10">
         <div>
           <span className="block text-lg font-bold md:text-2xl">
-            Development
+            {searchResult.word}
           </span>
           <span className="text-xs">{`[ di-ˈve-ləp-mənt ]`}</span>
         </div>
