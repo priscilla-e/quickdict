@@ -1,12 +1,17 @@
+import Header from "./components/layout/Header.tsx";
+import SearchForm from "./components/ui/SearchForm.tsx";
 
 function App() {
-
-
   return (
     <>
-      <h1 className="text-red-900 text-2xl">Hello World!</h1>
+      <Header />
+      <main>
+        <div className="flex justify-center px-10 mt-10">
+          <SearchForm onSearch={(e) => alert(e)}/>
+        </div>
+      </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
