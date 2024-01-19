@@ -26,10 +26,10 @@ export default function SearchInput({ onSearch }: SearchInputProps) {
         ref={searchInputRef}
         type="text"
         placeholder="Search any word..."
-        className="w-full rounded-full border-none bg-primary-light  px-10 py-3 text-sm placeholder-gray-300 outline-none md:px-14 md:py-6"
+        className="w-full rounded-full border-none bg-primary-light  px-12 py-4 text-sm placeholder-gray-300 outline-none md:px-14 md:py-6"
         onKeyDown={handleKeyDown}
       />
-      <BsSearch className="absolute left-3 top-3 text-xl md:left-6 md:top-6 " />
+      <BsSearch className="absolute left-4 top-4 text-xl md:left-6 md:top-6 " />
     </div>
   );
 }
