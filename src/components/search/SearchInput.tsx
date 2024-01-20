@@ -16,7 +16,7 @@ export default function SearchInput({ onSearch }: SearchInputProps) {
 
     if (!searchTerm?.trim()) return;
 
-    onSearch(searchTerm);
+    onSearch(searchTerm.toLowerCase());
   };
 
   return (
