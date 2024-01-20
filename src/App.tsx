@@ -23,7 +23,7 @@ function App() {
   return (
     <>
       <Header />
-      <main>
+      <main className='container mx-auto'>
         <div className="mt-10 flex justify-center px-10 md:mt-24">
           <SearchInput onSearch={(e) => alert(e)} />
         </div>
