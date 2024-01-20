@@ -9,3 +9,5 @@ export type Definition = {
     audio?: string;
     meanings: Array<string>;
 }
+
+export type AudioFormat = 'mp3' | 'ogg' | 'wav'
