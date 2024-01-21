@@ -10,7 +10,7 @@ import { AudioFormat } from "../types";
  * @returns The constructed URL to the audio file in Merriam-Webster's Media Servers.
  */
 export default function audioParser(baseFileName: string, format: AudioFormat = 'mp3') {
-    let subDirectory = 'audio'
+    let subDirectory = baseFileName.charAt(0)
 
     if (baseFileName.startsWith('bix')) {
         subDirectory = 'bix';
@@ -23,7 +23,7 @@ export default function audioParser(baseFileName: string, format: AudioFormat = 
         subDirectory = 'number';
     }
 
-    const audioUrl = `https://media.merriam-webster.com/audio/prons/en/us/mp3/${subDirectory}/${baseFileName}.${format}`;
+    const audioUrl = `https://media.merriam-webster.com/audio/prons/en/us/${format}/${subDirectory}/${baseFileName}.${format}`;
 
     return audioUrl;
 }
