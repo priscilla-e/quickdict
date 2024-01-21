@@ -32,13 +32,13 @@ export default async function fetchFromAPI(word: string) {
       // See Documentation: https://dictionaryapi.com/products/json
       const id = res.meta.uuid;
       const functionalLabel = res.fl; // e.g noun verb
+      const meanings = res.shortdef;
       const mw = res.hwi.prs?.[0].mw || ''; // we pick the first pronunciation if it exists
       let audio = res.hwi.prs?.[0].sound?.audio || '';
       if (audio) {
         audio = audioParser(audio);
       }
-      const meanings = res.shortdef;
-
+      
       definitions.push({
         id,
         functionalLabel,
