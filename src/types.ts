@@ -4,10 +4,13 @@ export type SearchResult = {
 }
 
 export type Definition = {
-    partOfSpeech: string;
-    ipa?: string; // international phonetic alphabet
+  id: string;
+  functionalLabel: string;
+  pronunciations?: {
+    mw?: string; // written pronunciation in Merriam-Webster format
     audio?: string;
-    meanings: Array<string>;
-}
+  };
+  meanings: Array<string>;
+};
 
 export type AudioFormat = 'mp3' | 'ogg' | 'wav'
