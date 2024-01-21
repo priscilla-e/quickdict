@@ -6,9 +6,9 @@ export type SearchResult = {
 export type Definition = {
   id: string;
   functionalLabel: string;
-  pronunciations?: {
-    mw?: string; // written pronunciation in Merriam-Webster format
-    audio?: string;
+  pronunciations: {
+    mw: string; // written pronunciation in Merriam-Webster format
+    audio: string;
   };
   meanings: Array<string>;
 };
