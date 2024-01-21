@@ -2,17 +2,24 @@ import { useEffect, useState } from 'react';
 import Header from './components/layout/Header.tsx';
 import SearchInput from './components/search/SearchInput.tsx';
 import SearchResult from './components/search/SearchResult.tsx';
+import NoResult from './components/search/NoResult.tsx';
 import type { SearchResult as SearchResultType } from './types.ts';
-import { cacheToFirebase, fetchFromFirebase, fetchFromAPI, getRandomWord} from './utils';
-
+import {
+  cacheToFirebase,
+  fetchFromFirebase,
+  fetchFromAPI,
+  getRandomWord,
+} from './utils';
 
 function App() {
-  const [searchResult, setSearchResult] = useState<SearchResultType | null>(null);
-  
-  // TODO: Add random first word feature
-  useEffect(() => {
-    handleSearh(getRandomWord());
-  },[])
+  const [searchResult, setSearchResult] = useState<SearchResultType | null>(
+    null
+  );
+
+  // useEffect(() => {
+  //   // TODO: Display user's last search else random word
+  //   handleSearh(getRandomWord());
+  // }, []);
 
   const handleSearh = async (searchTerm: string) => {
     // Fetch word from local storage
@@ -27,7 +34,7 @@ function App() {
     const firebaseRes = await fetchFromFirebase(searchTerm);
     if (firebaseRes) {
       console.log('Firebase!', firebaseRes);
-      setSearchResult(firebaseRes)
+      setSearchResult(firebaseRes);
 
       // Cache this res to the user's storage so we retrieve from there next time
       localStorage.setItem(searchTerm, JSON.stringify(firebaseRes));
@@ -35,22 +42,21 @@ function App() {
     }
 
     // If not found, fetch from API
-    const apiRes = await fetchFromAPI(searchTerm)
+    const apiRes = await fetchFromAPI(searchTerm);
     if (apiRes) {
       console.log('API!', apiRes);
-      setSearchResult(apiRes)
+      setSearchResult(apiRes);
 
       // Cache to firebase to and user's localStorage
-      cacheToFirebase(apiRes)
+      cacheToFirebase(apiRes);
       localStorage.setItem(searchTerm, JSON.stringify(apiRes));
-      return 
+      return;
     }
 
-    // No Result Found! 
-    setSearchResult(null)
+    // No Result Found!
+    setSearchResult(null);
     alert(searchTerm);
   };
-
 
   return (
     <>
@@ -60,7 +66,11 @@ function App() {
           <SearchInput onSearch={handleSearh} />
         </div>
 
-        {searchResult && <SearchResult searchResult={searchResult} />}
+        {searchResult ? (
+          <SearchResult searchResult={searchResult} />
+        ) : (
+          <NoResult />
+        )}
       </main>
     </>
   );
