@@ -3,14 +3,15 @@ import Header from './components/layout/Header.tsx';
 import SearchInput from './components/search/SearchInput.tsx';
 import SearchResult from './components/search/SearchResult.tsx';
 import type { SearchResult as SearchResultType } from './types.ts';
+import { cacheToFirebase, fetchFromFirebase, fetchFromAPI, getRandomWord} from './utils';
 
-import { cacheToFirebase, fetchFromFirebase, fetchFromAPI } from './utils';
 
 function App() {
   const [searchResult, setSearchResult] = useState<SearchResultType | null>(null);
   
+  // TODO: Add random first word feature
   useEffect(() => {
-    handleSearh('perseverance')
+    handleSearh(getRandomWord());
   },[])
 
   const handleSearh = async (searchTerm: string) => {
