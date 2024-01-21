@@ -56,7 +56,6 @@ function App() {
 
     // No Result Found!
     setSearchResult(null);
-    alert(searchTerm);
   };
 
   return (
