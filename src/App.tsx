@@ -6,33 +6,12 @@ import type { SearchResult as SearchResultType } from './types.ts';
 
 import { cacheToFirebase, fetchFromFirebase, fetchFromAPI } from './utils';
 
-const dummyResults: SearchResultType = {
-  word: 'development',
-  definitions: [
-    {
-      id: '20ju22',
-      functionalLabel: 'verb',
-      pronunciations: {
-        mw: 'di-ˈve-ləp-mənt',
-        audio: 'https://audios.com',
-      },
-      meanings: [
-        'to set down in writing or the like, as for the purpose of preserving evidence.',
-        'to set down in writing or the like, as for the purpose of preserving evidence.',
-        'to set down in writing or the like, as for the purpose of preserving evidence.',
-      ],
-    },
-  ],
-};
-
-
-
 function App() {
-  const [searchResult, setSearchResult] = useState<SearchResultType | null>(dummyResults);
+  const [searchResult, setSearchResult] = useState<SearchResultType | null>(null);
   
-  // useEffect(() => {
-  //   handleSearh('record')
-  // },[])
+  useEffect(() => {
+    handleSearh('perseverance')
+  },[])
 
   const handleSearh = async (searchTerm: string) => {
     // Fetch word from local storage
