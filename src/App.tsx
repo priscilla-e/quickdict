@@ -3,6 +3,7 @@ import Header from './components/layout/Header.tsx';
 import SearchInput from './components/search/SearchInput.tsx';
 import SearchResult from './components/search/SearchResult.tsx';
 import NoResult from './components/search/NoResult.tsx';
+import Footer from './components/layout/Footer.tsx';
 import type { SearchResult as SearchResultType } from './types.ts';
 import {
   cacheToFirebase,
@@ -16,10 +17,10 @@ function App() {
     null
   );
 
-  // useEffect(() => {
-  //   // TODO: Display user's last search else random word
-  //   handleSearh(getRandomWord());
-  // }, []);
+  useEffect(() => {
+    // TODO: Display user's last search else random word
+    handleSearh(getRandomWord());
+  }, []);
 
   const handleSearh = async (searchTerm: string) => {
     // Fetch word from local storage
@@ -72,6 +73,7 @@ function App() {
           <NoResult />
         )}
       </main>
+      <Footer />
     </>
   );
 }
