@@ -1,24 +1,33 @@
-import DefinitionList from '../definition/DefinitionList.tsx'
+import DefinitionList from '../definition/DefinitionList.tsx';
 import type { SearchResult } from '../../types.ts';
 import { HiSpeakerWave } from 'react-icons/hi2';
+import playAudio from '../../utils/playAudio.ts';
 
 interface SearchResultProps {
   searchResult: SearchResult;
 }
 
-export default function SearchResult({searchResult}: SearchResultProps ) {
+export default function SearchResult({ searchResult }: SearchResultProps) {
+  const [firstResult] = searchResult.definitions;
   return (
     <div className="mx-auto mt-10 min-h-96 max-w-2xl rounded-3xl bg-white px-6 py-8 md:p-10">
       <div className="flex items-center justify-between rounded-2xl bg-primary p-6 text-white md:py-10">
         <div>
-          <span className="block text-lg font-bold md:text-2xl">
+          <span className="block text-xl font-bold md:text-3xl">
             {searchResult.word}
           </span>
-          <span className="text-xs">{`[ di-ˈve-ləp-mənt ]`}</span>
+          {firstResult.pronunciations.mw && (
+            <span className="text-xs">{`[ ${firstResult.pronunciations.mw} ]`}</span>
+          )}
         </div>
-        <button className="text-3xl duration-300 hover:scale-105 hover:text-gray-100 focus:outline-none">
-          <HiSpeakerWave />
-        </button>
+        {firstResult.pronunciations.audio && (
+          <button
+            className="text-3xl duration-300 hover:scale-105 hover:text-gray-100 focus:outline-none"
+            onClick={() => playAudio(firstResult.pronunciations.audio)}
+          >
+            <HiSpeakerWave />
+          </button>
+        )}
       </div>
 
       <DefinitionList definitions={searchResult.definitions} />

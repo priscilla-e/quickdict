@@ -7,7 +7,7 @@ interface DefinitionListProps {
 
 export default function DefinitionList({ definitions }: DefinitionListProps) {
   return (
-    <ul className="border-b border-b-gray-200 py-6">
+    <ul className="my-4">
       {definitions.map((definition, index) => (
         <DefinitionItem key={index} definition={definition} />
       ))}
