@@ -14,10 +14,7 @@ export default async function fetchFromFirebase(word: string) {
     const snapshot = await get(child(dbRef, `cache/${word}`));
 
     if (snapshot.exists()) {
-      const searchResult: SearchResult = {
-        word,
-        definitions: snapshot.val(),
-      };
+      const searchResult: SearchResult = snapshot.val();
       return searchResult;
     }
   } catch (error) {

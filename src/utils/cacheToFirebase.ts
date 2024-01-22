@@ -9,5 +9,5 @@ import type { SearchResult } from '../types.ts';
  */
 export default function cacheToFirebase(searchResult: SearchResult) {
   const cacheRef = ref(database, `cache/${searchResult.word}`);
-  set(cacheRef, searchResult.definitions);
+  set(cacheRef, searchResult);
 }
