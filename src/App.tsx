@@ -25,6 +25,7 @@ function App() {
   const [searchHistory, setSearchHistory] = useState<SearchResultType[]>([]);
   
   // TODO: Implement search history feature
+  // TODO: Add loading spinner when handling search...
   console.log(searchHistory)
 
   useEffect(() => {
