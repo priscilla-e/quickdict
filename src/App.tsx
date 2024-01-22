@@ -23,6 +23,9 @@ function App() {
   );
 
   const [searchHistory, setSearchHistory] = useState<SearchResultType[]>([]);
+  
+  // TODO: Implement search history feature
+  console.log(searchHistory)
 
   useEffect(() => {
     async function fetchHistory() {
