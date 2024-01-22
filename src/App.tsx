@@ -40,8 +40,6 @@ function App() {
 
     fetchHistory();
   }, []);
-
-  console.log(searchHistory);
   
   const handleSearh = async (searchTerm: string) => {
     // Fetch from User's Local IndexedDB
