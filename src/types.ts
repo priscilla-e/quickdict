@@ -1,6 +1,7 @@
 export type SearchResult = {
     word: string;
     definitions: Definition[]
+    timestamp: number
 }
 
 export type Definition = {
