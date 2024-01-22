@@ -11,52 +11,72 @@ import {
   fetchFromAPI,
   getRandomWord,
 } from './utils';
+import {
+  addSearchResult,
+  getSearchResult,
+  getSearchHistory,
+} from './indexedDBConfig.ts';
 
 function App() {
   const [searchResult, setSearchResult] = useState<SearchResultType | null>(
     null
   );
 
+  const [searchHistory, setSearchHistory] = useState<SearchResultType[]>([]);
+
   useEffect(() => {
-    // TODO: Display user's last search else random word
-    handleSearh(getRandomWord());
+    async function fetchHistory() {
+      const history = await getSearchHistory();
+      setSearchHistory(history);
+
+      // If history is empty, handle search with a random word
+      if (history.length === 0) {
+        const randomWord = getRandomWord();
+        handleSearh(randomWord);
+      } else {
+        setSearchResult(history[0]);
+      }
+    }
+
+    fetchHistory();
   }, []);
 
+  console.log(searchHistory);
+  
   const handleSearh = async (searchTerm: string) => {
-    // Fetch word from local storage
-    const localStorageRes = localStorage.getItem(searchTerm);
-    if (localStorageRes) {
-      console.log('Local storage!', localStorageRes);
-      setSearchResult(JSON.parse(localStorageRes) as SearchResultType);
-      return;
+    // Fetch from User's Local IndexedDB
+    let res = await getSearchResult(searchTerm);
+
+    if (!res) {
+      // Not found in IndexedDB: Fetch from Firebase
+      res = await fetchFromFirebase(searchTerm);
+
+      if (!res) {
+        // Not found in Firebase: Fetch from API
+        res = await fetchFromAPI(searchTerm)
+        
+        if (res) {
+          // Found in API: Cache to IndexedDB and Firebase
+          addSearchResult(res);
+          cacheToFirebase(res);
+        }
+        else {
+          res = null
+        }
+      }
+      else {
+        // Found in Firebase: Cache to IndexedDB
+        addSearchResult(res);
+      }
     }
 
-    // If not found, fetch from Cache Database (Firebase)
-    const firebaseRes = await fetchFromFirebase(searchTerm);
-    if (firebaseRes) {
-      console.log('Firebase!', firebaseRes);
-      setSearchResult(firebaseRes);
+    setSearchResult(res);
 
-      // Cache this res to the user's storage so we retrieve from there next time
-      localStorage.setItem(searchTerm, JSON.stringify(firebaseRes));
-      return;
-    }
-
-    // If not found, fetch from API
-    const apiRes = await fetchFromAPI(searchTerm);
-    if (apiRes) {
-      console.log('API!', apiRes);
-      setSearchResult(apiRes);
-
-      // Cache to firebase to and user's localStorage
-      cacheToFirebase(apiRes);
-      localStorage.setItem(searchTerm, JSON.stringify(apiRes));
-      return;
-    }
-
-    // No Result Found!
-    setSearchResult(null);
+    // Update search history 
+    const history = await getSearchHistory()
+    setSearchHistory(history)
   };
+
 
   return (
     <>
