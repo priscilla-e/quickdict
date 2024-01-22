@@ -51,7 +51,7 @@ export default async function fetchFromAPI(word: string) {
     }
 
     if (definitions.length > 0) {
-      return { word, definitions } as SearchResult;
+      return { word, definitions, timestamp: Date.now()} as SearchResult;
     }
   } catch (error) {
     console.log(error);
